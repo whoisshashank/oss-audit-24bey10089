@@ -1,30 +1,110 @@
+Shashank Srivastava 24BEY10089
+# Open Source Audit Toolkit
 
-# Open Source Audit - Manthan Awgan
+A collection of Bash scripts for inspecting, auditing, and analyzing open source systems and software. The toolkit is designed to work with standard Linux utilities and provides a consistent terminal-based interface for all operations.
 
-**Student Name:** Manthan Awgan
-**Roll Number:** 24BSA10053
-**Chosen Software:** LibreOffice
+## Overview
 
-## Description of Scripts
+This repository contains the following scripts:
 
-*   **Script 1: System Identity Report:** Introduces the Arch Linux system, displaying the distribution name, kernel version, current user, uptime, and the open-source licenses covering the OS and LibreOffice.
-*   **Script 2: Package Inspector:** Uses `pacman` to check if LibreOffice is installed on the system and retrieves its version, architecture, and package details.
-*   **Script 3: Security Audit:** Loops through critical LibreOffice directories (`/usr/lib/libreoffice`, `/usr/share/libreoffice`, `/etc/libreoffice`) to verify if any are dangerously set to world-writable.
-*   **Script 4: Log Analyzer:** Takes a log file as an argument and counts the occurrences of a specified keyword (defaults to "error"), outputting the total matches and the last 5 matching lines.
-*   **Script 5: Manifesto Generator:** Interactively prompts the user with three questions and generates a personalized open-source manifesto text file based on their answers.
+- **System Identity Report**  
+  Displays system-level information such as distribution, kernel version, uptime, and hardware details.
 
-## Dependencies Required
-*   **Operating System:** Arch Linux (or an Arch-based distribution), as the scripts rely on `pacman` and Arch-specific system files.
-*   **Software:** `libreoffice-fresh` (or equivalent) must be installed for the package inspector to return a positive result.
+- **FOSS Package Inspector**  
+  Retrieves metadata for installed packages using the system package manager, including version, license, and build information.
 
-## Step-by-Step Instructions to Run the Scripts
+- **Disk and Permission Auditor**  
+  Scans specific directories and reports insecure permission configurations such as world-writable access.
 
-1.  Open your Linux terminal and navigate to the directory containing these scripts.
-2.  Make all scripts executable by running:
-    `chmod +x *.sh`
-3.  **Run Script 1:** `./script1.sh`
-4.  **Run Script 2:** `./script2.sh`
-5.  **Run Script 3:** `./script3.sh`
-6.  **Run Script 4:** `./script4.sh /path/to/logfile [optional_keyword]`
-    *(Example: `./script4.sh /var/log/pacman.log error`)*
-7.  **Run Script 5:** `./script5.sh` (Answer the prompts on screen)
+- **Log File Analyzer**  
+  Processes log files to identify keyword occurrences, highlight relevant entries, and detect common issue patterns.
+
+- **Open Source Manifesto Generator**  
+  Generates a structured manifesto file based on user input and system context.
+
+## Requirements
+
+- Linux-based operating system (optimized for Arch Linux)
+- Bash (version 4 or later)
+
+### Required utilities
+
+- `pacman`
+- `grep`, `awk`, `sed`
+- `find`, `stat`, `df`, `du`, `wc`
+- `lscpu`, `free`
+
+### Optional utilities
+
+- `bc` (used for percentage calculations in log analysis)
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/open-source-audit-toolkit.git
+cd open-source-audit-toolkit
+```
+
+## Running the Scripts
+
+### System Identity Report
+
+`./script-1-systemidentity.sh`
+
+Displays system information such as distribution, kernel version, uptime, and hardware details.
+
+---
+
+### FOSS Package Inspector
+
+`./script-2-foss-package.sh`
+
+Inspects a predefined package (default: LibreOffice) and displays version, license, and metadata.
+
+---
+
+### Disk and Permission Auditor
+
+`./script-3-security-audit.sh`
+
+Scans directories and reports insecure permissions such as world-writable access.
+
+---
+
+### Log File Analyzer
+
+`./script-4-loganalyzer.sh <logfile> [keyword]`
+
+Examples:
+
+`./script-4-loganalyzer.sh /var/log/syslog`  
+`./script-4-loganalyzer.sh /var/log/pacman.log warning`
+
+If no logfile is provided, the script attempts to locate LibreOffice logs automatically.
+
+---
+
+### Open Source Manifesto Generator
+
+`./script-5-opensourcemanifesto.sh`
+
+Prompts for input and generates a manifesto file in the current directory.
+
+---
+
+## Additional Notes
+
+Some scripts may require elevated privileges:
+
+`sudo ./script-4-loganalyzer.sh /var/log/syslog`
+
+Ensure required utilities are installed before running the scripts.  
+Designed for terminal usage with formatted output.
+
+Make all scripts executable:
+
+```bash
+chmod +x *.sh
+```
